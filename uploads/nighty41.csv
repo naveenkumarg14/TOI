@@ -1,0 +1,8 @@
+Menu item code,ProductName,Description,Food Category,DisplayOrder(FC),Menu Course,DisplayOrder(MC),DisplayOrder, Rate ,Status,Spicy
+1,Chikken Tikkka ,Off the bone marinated tikka pieces,"South Indian,NV",7,Starters,5,1,170,Available,Hot
+2,Lamb Tikka ,Off the bone marinated tikka pieces,"South Indian,NV",6,Starters,4,2,200,Unavailable,Medium
+3,Chicken Chat,"Savoury chicken with cumber ,Tomato","South Indian,NV",5,Starters,7,3,180,Available,Medium
+4,Tandori Duck,Duck piece with grilled onion and tommato,"Chineese ,NV",4,Dishes,6,4,130,Unavailable,Medium
+5,Tandori Chicken,"Succlent Half chicken,marinated and charcoal cooked","Chineese ,NV",3,Dishes,2,5,125,Available,Mild
+6,Chicken Briyani,Chicken and Rice Cooked with masala,"South Indian,NV",2,Main Course,1,6,140,Available,Mild
+7,Muttoon Briyani,Mutton and Rice Cooked with masala,"South Indian,NV",1,Main Course,3,7,145,Available,Hot
