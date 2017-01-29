@@ -1,19 +1,17 @@
 <?php
 
-class History_model extends CI_Model {
+class Archive_model extends CI_Model {
 
     public function __construct() {
         $this->load->database();
     }
 
-    public function get_history() {
-        $this->db->select('OrderId,PlacedOrdersId,TotalPrice,TableNumber,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime');
-        $this->db->from('placedorders');
-        $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
-        $this->db->where('PaymentStatus is NOT NULL', NULL, FALSE);
-        $this->db->where('PurchaseUUID is NOT NULL', NULL, FALSE);
-        $this->db->order_by('ServerDateTime', 'DESC');
+    public function get_archive() {
+        $this->db->select('HistoryId,OrderId, DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime,TotalPrice,UserMobileNumber');
+        $this->db->from('history');
+        $this->db->order_by('OrderDateTime', 'DESC');
         $query = $this->db->get();
+        $this->db->limit('50');
         return $query->result_array();
     }
 

@@ -28,7 +28,6 @@ class Products_model extends CI_Model {
     public function update_product($productid) {
         $todaysdate = date("Y-m-d H:i:s");
         $todaysdate = strtotime($todaysdate) * 1000;
-        $menucode = $this->input->post('menucode');
         $name = $this->input->post('name');
         $displayorder = $this->input->post('displayorder');
         $spicy = $this->input->post('spicy');
@@ -36,7 +35,7 @@ class Products_model extends CI_Model {
         $price = $this->input->post('price');
         $status = $this->input->post('status');
         $description = $this->input->post('description');
-        $data = array('MenuItemCode' => $menucode, 'Name' => $name, 'Price' => $price, 'Status' => $status, 'ServerTime' => $todaysdate, 'DisplayOrder' => $displayorder, 'TasteType' => $spicy, 'FoodType' => $foodtype, 'Description' => $description);
+        $data = array('Name' => $name, 'Price' => $price, 'Status' => $status, 'ServerTime' => $todaysdate, 'DisplayOrder' => $displayorder, 'TasteType' => $spicy, 'FoodType' => $foodtype, 'Description' => $description);
         $this->db->where('MenuId', $productid);
         $this->db->update('menuentity', $data);
         return true;
