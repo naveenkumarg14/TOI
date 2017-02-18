@@ -6,6 +6,7 @@
         <meta name="author" content="Isna Nur Azis">
         <meta name="keyword" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="refresh" content="30" />
         <title>Taste of India</title>
         <!-- start: Css -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.min.css">
@@ -18,7 +19,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/plugins/spinkit.css"/>
         <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet">
         <!-- end: Css -->
-       <link rel="shortcut icon" href="<?php echo base_url(); ?>img/toi_logo.png">
+        <link rel="shortcut icon" href="<?php echo base_url(); ?>img/toi_logo.png">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

@@ -41,6 +41,14 @@ class Products_model extends CI_Model {
         return true;
     }
 
+    public function check_is_order_closed() {
+        $this->db->select('PlacedOrdersId');
+        $this->db->from('placedorders');
+        $this->db->where('IsClosed', '0');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
     public function delete_product() {
         $this->db->empty_table('menuentity');
         $this->db->empty_table('foodcategory');

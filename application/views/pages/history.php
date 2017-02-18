@@ -18,6 +18,7 @@
                         <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Table No.</th>
                                     <th>Order Id</th>
                                     <th>Mobile</th>
@@ -28,11 +29,13 @@
                             </thead>
                             <tbody>
                                 <?php
+                                $totalrowcount = count($get_history);
                                 foreach ($get_history as $item):
                                     $placed_orders_id = $item['PlacedOrdersId'];
                                     $view_url = site_url('History/history_view/' . $placed_orders_id);
                                     ?>
                                     <tr> 
+                                        <td><?php echo $totalrowcount; ?> </td>
                                         <td><?php echo $item['TableNumber']; ?> </td>
                                         <td><?php echo $item['OrderId']; ?> </td>
                                         <td><?php echo $item['UserMobileNumber']; ?></td>
@@ -40,7 +43,8 @@
                                         <td><?php echo $item['OrderDateTime']; ?></td>
                                         <td><a href="<?php echo $view_url; ?>" class="btn btn-primary btn-sm" role="button">View</a></td>
                                     </tr>
-                                <?php endforeach; ?>                             
+                                    <?php $totalrowcount--;
+                                endforeach; ?>                             
                             </tbody>                         
                         </table>
                     </div>

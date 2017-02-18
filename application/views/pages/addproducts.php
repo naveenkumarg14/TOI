@@ -18,8 +18,14 @@
                 <div class="panel-body">
 
                     <div class="col-md-12 panel-body" style="padding-bottom:30px;">
-
-                        <form action="<?php echo base_url();?>products/addproducts" method="POST" enctype="multipart/form-data" >
+                        <?php
+                        if (isset($productuploaderror)) {
+                            echo '<div class="alert alert-danger">';
+                            echo $productuploaderror;
+                            echo '</div>';
+                        }
+                        ?>
+                        <form action="<?php echo base_url(); ?>products/addproducts" method="POST" enctype="multipart/form-data" >
                             <div class="form-group" style="margin-top:40px !important;">
                                 <input type="file" class="form-text" id="userfile" name="userfile" required="">
                                 <span class="bar"></span>                   

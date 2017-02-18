@@ -8,8 +8,9 @@ class Dashboard_model extends CI_Model {
 
     public function get_purchase_count() {
         $this->db->from('placedorders');
-        $this->db->where('PaymentStatus is NULL', NULL, FALSE);
-        $this->db->where('PurchaseUUID is NULL', NULL, FALSE);
+        $this->db->where('IsClosed', 0);
+        //$this->db->where('PaymentStatus is NULL', NULL, FALSE);
+        //$this->db->where('PurchaseUUID is NULL', NULL, FALSE);
         $query = $this->db->get();
         $rowcount = $query->num_rows();
         return $rowcount;
@@ -26,8 +27,9 @@ class Dashboard_model extends CI_Model {
 
     public function get_history_count() {
         $this->db->from('placedorders');
-        $this->db->where('PaymentStatus is NOT NULL', NULL, FALSE);
-        $this->db->where('PurchaseUUID is NOT NULL', NULL, FALSE);
+        $this->db->where('IsClosed', 1);
+        //$this->db->where('PaymentStatus is NOT NULL', NULL, FALSE);
+        //$this->db->where('PurchaseUUID is NOT NULL', NULL, FALSE);
         $query = $this->db->get();
         $rowcount = $query->num_rows();
         return $rowcount;

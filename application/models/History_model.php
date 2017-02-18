@@ -9,10 +9,11 @@ class History_model extends CI_Model {
     public function get_history() {
         $this->db->select('OrderId,PlacedOrdersId,TotalPrice,TableNumber,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime');
         $this->db->from('placedorders');
+        $this->db->where('IsClosed', 1);
         $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
-        $this->db->where('PaymentStatus is NOT NULL', NULL, FALSE);
-        $this->db->where('PurchaseUUID is NOT NULL', NULL, FALSE);
-        $this->db->order_by('ServerDateTime', 'DESC');
+        //  $this->db->where('PaymentStatus is NOT NULL', NULL, FALSE);
+        //  $this->db->where('PurchaseUUID is NOT NULL', NULL, FALSE);
+        $this->db->order_by('OrderDateTime', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -34,6 +35,8 @@ class History_model extends CI_Model {
         $this->db->join('menucourse', 'menucourse.MenuCourseId = menuentity.MenuCourseId');
         $this->db->join('foodcategory', 'foodcategory.FoodCategoryId = menuentity.FoodCategoryId');
         $this->db->where('PlacedOrdersId', $placed_orders_id);
+        $this->db->where('IsDeleted', false);
+        $this->db->order_by('OrderDateTime', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }

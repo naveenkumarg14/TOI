@@ -52,77 +52,75 @@ Class Products extends CI_Controller {
     public function addproducts() {
         if (!empty($_SESSION['MerchantId'])) {
             $data['title'] = "Add Products";
-            $check = $this->input->post('check');
-            if ($check == 1) {
-                $this->Products_model->delete_product();
-                $config['upload_path'] = './uploads/';
-                $config['allowed_types'] = 'csv';
-                $config['max_size'] = '1000';
-                $this->load->library('upload', $config);
+            $isorderclosesd = $this->Products_model->check_is_order_closed();
+            $checked = $this->input->post('check');
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'csv';
+            $config['max_size'] = '1000';
+            $this->load->library('upload', $config);
 
-                if (!$this->upload->do_upload('userfile')) {
-                    $error = array('error' => $this->upload->display_errors());
-                } else {
-                    $data = $this->upload->data();
-                    $file = $data['full_path'];
-                    //read file from path
-                    $objPHPExcel = PHPExcel_IOFactory::load($file);
-                    //get only the Cell Collection
-                    $cell_collection = $objPHPExcel->getActiveSheet()->getCellCollection();
-                    //extract to a PHP readable array format
-                    foreach ($cell_collection as $cell) {
-                        $column = $objPHPExcel->getActiveSheet()->getCell($cell)->getColumn();
-                        $row = $objPHPExcel->getActiveSheet()->getCell($cell)->getRow();
-                        $data_value = $objPHPExcel->getActiveSheet()->getCell($cell)->getValue();
-                        //header will/should be in row 1 only. of course this can be modified to suit your need.
-                        if ($row == 1) {
-                            $header[$row][$column] = $data_value;
-                        } else {
-                            $arr_data[$row][$column] = $data_value;
+            if ($isorderclosesd == 0) {
+                if ((int) $checked == 1) {
+                    $this->Products_model->delete_product();
+                    if (!$this->upload->do_upload('userfile')) {
+                        $error = array('error' => $this->upload->display_errors());
+                    } else {
+                        $data = $this->upload->data();
+                        $file = $data['full_path'];
+                        //read file from path
+                        $objPHPExcel = PHPExcel_IOFactory::load($file);
+                        //get only the Cell Collection
+                        $cell_collection = $objPHPExcel->getActiveSheet()->getCellCollection();
+                        //extract to a PHP readable array format
+                        foreach ($cell_collection as $cell) {
+                            $column = $objPHPExcel->getActiveSheet()->getCell($cell)->getColumn();
+                            $row = $objPHPExcel->getActiveSheet()->getCell($cell)->getRow();
+                            $data_value = $objPHPExcel->getActiveSheet()->getCell($cell)->getValue();
+                            //header will/should be in row 1 only. of course this can be modified to suit your need.
+                            if ($row == 1) {
+                                $header[$row][$column] = $data_value;
+                            } else {
+                                $arr_data[$row][$column] = $data_value;
+                            }
                         }
+                        //send the data in an array format
+                        $data['header'] = $header;
+                        $data['values'] = $arr_data;
+                        $addproducts = $this->Products_model->add_products($data['values']);
+                        redirect('products');
                     }
-                    //send the data in an array format
-                    $data['header'] = $header;
-                    $data['values'] = $arr_data;
-                    $addproducts = $this->Products_model->add_products($data['values']);
-                    redirect('products');
+                } else {
+                    if (!$this->upload->do_upload('userfile')) {
+                        $error = array('error' => $this->upload->display_errors());
+                    } else {
+                        $data = $this->upload->data();
+                        $file = $data['full_path'];
+                        //read file from path
+                        $objPHPExcel = PHPExcel_IOFactory::load($file);
+                        //get only the Cell Collection
+                        $cell_collection = $objPHPExcel->getActiveSheet()->getCellCollection();
+                        //extract to a PHP readable array format
+                        foreach ($cell_collection as $cell) {
+                            $column = $objPHPExcel->getActiveSheet()->getCell($cell)->getColumn();
+                            $row = $objPHPExcel->getActiveSheet()->getCell($cell)->getRow();
+                            $data_value = $objPHPExcel->getActiveSheet()->getCell($cell)->getValue();
+                            //header will/should be in row 1 only. of course this can be modified to suit your need.
+                            if ($row == 1) {
+                                $header[$row][$column] = $data_value;
+                            } else {
+                                $arr_data[$row][$column] = $data_value;
+                            }
+                        }
+                        //send the data in an array format
+                        $data['header'] = $header;
+                        $data['values'] = $arr_data;
+                        $addproducts = $this->Products_model->add_products($data['values']);
+                        redirect('products');
+                    }
                 }
             } else {
-                $config['upload_path'] = './uploads/';
-                $config['allowed_types'] = 'csv';
-                $config['max_size'] = '1000';
-                $this->load->library('upload', $config);
-
-                if (!$this->upload->do_upload('userfile')) {
-                    $error = array('error' => $this->upload->display_errors());
-                } else {
-                    $data = $this->upload->data();
-                    $file = $data['full_path'];
-                    //read file from path
-                    $objPHPExcel = PHPExcel_IOFactory::load($file);
-                    //get only the Cell Collection
-                    $cell_collection = $objPHPExcel->getActiveSheet()->getCellCollection();
-                    //extract to a PHP readable array format
-                    foreach ($cell_collection as $cell) {
-                        $column = $objPHPExcel->getActiveSheet()->getCell($cell)->getColumn();
-                        $row = $objPHPExcel->getActiveSheet()->getCell($cell)->getRow();
-                        $data_value = $objPHPExcel->getActiveSheet()->getCell($cell)->getValue();
-                        //header will/should be in row 1 only. of course this can be modified to suit your need.
-                        if ($row == 1) {
-                            $header[$row][$column] = $data_value;
-                        } else {
-                            $arr_data[$row][$column] = $data_value;
-                        }
-                    }
-                    //send the data in an array format
-                    $data['header'] = $header;
-                    $data['values'] = $arr_data;
-                    $addproducts = $this->Products_model->add_products($data['values']);
-                    redirect('products');
-                }
+                $data["productuploaderror"] = "Products can only be uploaded post the existing orders";
             }
-
-
 
             $this->load->view('templates/header', $data);
             $this->load->view('pages/addproducts', $data);

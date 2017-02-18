@@ -99,8 +99,8 @@
 
                                 <div class="form-group form-animate-text" style="margin-top:42px !important;">
                                     <select class="form-text" name="status" id="status"  required="" aria-required="true">
-                                        <option value="Not Available" <?php echo set_select('status', 'Not Available', (!empty($get_edit_product->Status) && $get_edit_product->Status == "Not Available" ? TRUE : FALSE)); ?> >Not Available</option>
-                                        <option value="Available" <?php echo set_select('status', 'Available', (!empty($get_edit_product->Status) && $get_edit_product->Status == "Available" ? TRUE : FALSE)); ?> >Available</option>
+                                        <option value="UN_AVAILABLE" <?php echo set_select('status', 'UN_AVAILABLE', (!empty($get_edit_product->Status) && $get_edit_product->Status == "UN_AVAILABLE" ? TRUE : FALSE)); ?> >UN_AVAILABLE</option>
+                                        <option value="AVAILABLE" <?php echo set_select('status', 'AVAILABLE', (!empty($get_edit_product->Status) && $get_edit_product->Status == "AVAILABLE" ? TRUE : FALSE)); ?> >AVAILABLE</option>
                                     </select>
                                     <span class="bar"></span>
                                     <div class="select-wrapper">

@@ -12,7 +12,7 @@ class Orderstatus_model extends CI_Model {
         $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
         $this->db->where('PaymentStatus is NULL', NULL, FALSE);
         $this->db->where('PurchaseUUID is NOT NULL', NULL, FALSE);
-        $this->db->order_by('ServerDateTime', 'DESC');
+         $this->db->order_by('OrderDateTime', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -32,7 +32,9 @@ class Orderstatus_model extends CI_Model {
         $this->db->join('menuentity', 'menuentity.MenuId = placedorderitems.MenuId');
         $this->db->join('menucourse', 'menucourse.MenuCourseId = menuentity.MenuCourseId');
         $this->db->join('foodcategory', 'foodcategory.FoodCategoryId = menuentity.FoodCategoryId');
+		$this->db->where('IsDeleted', false);
         $this->db->where('PlacedOrdersId', $placed_orders_id);
+		 $this->db->order_by('OrderDateTime', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }

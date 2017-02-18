@@ -18,6 +18,7 @@
                         <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Table No.</th>
                                     <th>Order Id</th>
                                     <th>Mobile</th>
@@ -31,11 +32,13 @@
                             </thead>
                             <tbody>
                                 <?php
+                                $totalrowcount = count($get_purchase);
                                 foreach ($get_purchase as $item):
                                     $placed_orders_id = $item['PlacedOrdersId'];
                                     $view_url = site_url('purchase/purchase_view/' . $placed_orders_id);
                                     ?>
                                     <tr> 
+                                        <td><?php echo $totalrowcount; ?> </td>
                                         <td><?php echo $item['TableNumber']; ?> </td>
                                         <td><?php echo $item['OrderId']; ?> </td>
                                         <td><?php echo $item['UserMobileNumber']; ?></td>
@@ -46,7 +49,7 @@
                                         <td><?php echo $item['totalactiveorders']; ?></td>
                                         <td><a href="<?php echo $view_url; ?>" class="btn btn-primary btn-sm" role="button">View</a></td>
                                     </tr>
-                                <?php endforeach; ?>                           
+                                <?php $totalrowcount--; endforeach; ?>                           
                             </tbody>
                         </table>
                     </div>

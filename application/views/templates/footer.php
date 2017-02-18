@@ -35,7 +35,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#datatables-example').DataTable();
+        $('#datatables-example').DataTable({
+            "ordering": false
+        });
     });
 </script>
 <!-- custom -->
@@ -43,12 +45,12 @@
 <script type="text/javascript">
     idleTimer = null;
     idleState = false;
-    idleWait = 600000;
+    idleWait = 6000;
     (function ($) {
         $(document).ready(function () {
             $('*').bind('mousemove keydown scroll', function () {
                 clearTimeout(idleTimer);
-                if (idleState == true) {
+                if (idleState === true) {
                     // Reactivated event
                     $("body").append("<p>Welcome Back.</p>");
                 }
@@ -60,7 +62,7 @@
                     xhr.onload = function () {
                         document.location = 'signin/logout';
                     }
-                    xhr.open('GET', 'signin/logout', true);
+                    xhr.open('GET', '<?php echo base_url();?>signin/logout', true);
                     xhr.send();
 
                     idleState = true;
@@ -171,8 +173,8 @@
 
         };
     })(jQuery);
-</script>
 
+</script>
 
 <!-- end: Javascript -->
 </body>

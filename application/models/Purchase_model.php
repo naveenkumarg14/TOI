@@ -11,10 +11,11 @@ class Purchase_model extends CI_Model {
 
         $this->db->select('OrderId,PlacedOrdersId,TotalPrice,TableNumber,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%h:%i %p") as OrderDateTime');
         $this->db->from('placedorders');
-        $this->db->where('PaymentStatus is NULL', NULL, FALSE);
-        $this->db->where('PurchaseUUID is NULL', NULL, FALSE);
+        $this->db->where('IsClosed', 0);
+       // $this->db->where('PaymentStatus is NULL', NULL, FALSE);
+       // $this->db->where('PurchaseUUID is NULL', NULL, FALSE);
         $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
-        $this->db->order_by('ServerDateTime', 'DESC');
+        $this->db->order_by('OrderDateTime', 'DESC');
         $query = $this->db->get();
 
         $var = $query->result_array();
@@ -33,6 +34,7 @@ class Purchase_model extends CI_Model {
         $this->db->select('PlacedOrdersId,OrderStatus,PlacedOrdersId');
         $this->db->from('placedorderitems');
         $this->db->where('PlacedOrdersId', $placeodrderid);
+        $this->db->where('IsDeleted', false);
         $query = $this->db->get();
         return $query->num_rows();
     }
@@ -42,6 +44,7 @@ class Purchase_model extends CI_Model {
         $this->db->from('placedorderitems');
         $this->db->where('PlacedOrdersId', $placeodrderid);
         $this->db->where('OrderStatus', 'DELIVERED');
+        $this->db->where('IsDeleted', false);
         $query = $this->db->get();
         return $query->num_rows();
     }
@@ -51,6 +54,7 @@ class Purchase_model extends CI_Model {
         $this->db->from('placedorderitems');
         $this->db->where('PlacedOrdersId', $placeodrderid);
         $this->db->where('OrderStatus', 'ORDERED');
+        $this->db->where('IsDeleted', false);
         $query = $this->db->get();
         return $query->num_rows();
     }
@@ -60,6 +64,7 @@ class Purchase_model extends CI_Model {
         $this->db->from('placedorders');
         $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
         $this->db->where('PlacedOrdersId', $placed_orders_id);
+        $this->db->order_by('OrderDateTime', 'DESC');
         $query = $this->db->get();
         return $query->row();
     }
@@ -71,6 +76,8 @@ class Purchase_model extends CI_Model {
         $this->db->join('menucourse', 'menucourse.MenuCourseId = menuentity.MenuCourseId');
         $this->db->join('foodcategory', 'foodcategory.FoodCategoryId = menuentity.FoodCategoryId');
         $this->db->where('PlacedOrdersId', $placed_orders_id);
+        $this->db->where('IsDeleted', false);
+        $this->db->order_by('OrderDateTime', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
