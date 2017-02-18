@@ -24,6 +24,7 @@
                                     <th>Mobile</th>
                                     <th>Amount</th>
                                     <th>Order Date</th>
+                                    <th>Payment Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -41,10 +42,19 @@
                                         <td><?php echo $item['UserMobileNumber']; ?></td>
                                         <td><?php echo PRICE . $item['TotalPrice']; ?></td>
                                         <td><?php echo $item['OrderDateTime']; ?></td>
+                                        <td><?php 
+                                        $PaymentStatus = $item['PaymentStatus'];
+                                        if($PaymentStatus == NULL){
+                                            echo "NOT PAID";
+                                        }else{
+                                            echo $PaymentStatus;
+                                        }
+                                        ?></td>
                                         <td><a href="<?php echo $view_url; ?>" class="btn btn-primary btn-sm" role="button">View</a></td>
                                     </tr>
                                     <?php $totalrowcount--;
-                                endforeach; ?>                             
+                                endforeach;
+                                ?>                             
                             </tbody>                         
                         </table>
                     </div>

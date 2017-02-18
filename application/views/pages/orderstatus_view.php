@@ -37,8 +37,18 @@
                             <th>Total Price</th>
                             <th><?php echo PRICE . $get_orderstatus_details->TotalPrice; ?></th>
                         </tr>
+                        <tr>
+                            <th>Order Status</th>
+                            <th><?php
+                                $purchase_uuid = $get_orderstatus_details->PurchaseUUID;
+                                if ($purchase_uuid != NULL) {
+                                    echo "Synced";
+                                } else {
+                                    echo "Not Synced";
+                                }
+                                ?></th>
+                        </tr>
                     </table>
-
 
                     <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                         <thead>
@@ -49,6 +59,7 @@
                                 <th>Name</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
+                                <th>Table No.</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,9 +75,10 @@
                                     <td><?php echo $item['FoodCategoryName']; ?></td>
                                     <td><?php echo $item['Name']; ?></td>
                                     <td><?php echo $quantity; ?></td>
-                                    <td><?php echo PRICE . $cal_price; ?></td>                                   
+                                    <td><?php echo PRICE . $cal_price; ?></td> 
+                                    <td><?php echo $item['TableNumber']; ?></td>
                                 </tr>
-                            <?php endforeach; ?> 
+<?php endforeach; ?> 
                         </tbody>
                     </table>
 

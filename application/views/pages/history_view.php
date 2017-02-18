@@ -37,6 +37,17 @@
                             <th>Total Price</th>
                             <th><?php echo PRICE . $get_history_details->TotalPrice; ?></th>
                         </tr>
+                        <tr>
+                            <th>Payment Status</th>
+                            <th><?php
+                                $PaymentStatus = $get_history_details->PaymentStatus;
+                                if ($PaymentStatus == NULL) {
+                                    echo "NOT PAID";
+                                } else {
+                                    echo $PaymentStatus;
+                                }
+                                ?></th>
+                        </tr>
                     </table>
 
 
@@ -49,6 +60,7 @@
                                 <th>Name</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
+                                <th>Table No.</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,9 +76,10 @@
                                     <td><?php echo $item['FoodCategoryName']; ?></td>
                                     <td><?php echo $item['Name']; ?></td>
                                     <td><?php echo $quantity; ?></td>
-                                    <td><?php echo PRICE . $cal_price; ?></td>                                 
+                                    <td><?php echo PRICE . $cal_price; ?></td>  
+                                     <td><?php echo $item['TableNumber']; ?></td>
                                 </tr>
-                            <?php endforeach; ?> 
+<?php endforeach; ?> 
                         </tbody>
                     </table>
 

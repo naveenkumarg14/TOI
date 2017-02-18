@@ -45,7 +45,7 @@
 <script type="text/javascript">
     idleTimer = null;
     idleState = false;
-    idleWait = 6000;
+    idleWait = 600000;
     (function ($) {
         $(document).ready(function () {
             $('*').bind('mousemove keydown scroll', function () {
