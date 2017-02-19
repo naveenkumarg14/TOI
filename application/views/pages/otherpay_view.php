@@ -15,7 +15,7 @@
             <div class="panel">
                 <div class="panel-body">
 
-                    <form action="" method="POST" name="otherpayform">
+                   <form action="" method="POST" name="otherpayform">
                         <div class="col-lg-8"></div>
                         <div class="col-lg-2">
                             <div class="form-group form-animate-text">

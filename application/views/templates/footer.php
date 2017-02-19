@@ -22,6 +22,7 @@
 <!-- end: Mobile -->
 
 <!-- start: Javascript -->
+<script src="<?php echo base_url(); ?>js/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>js/jquery.ui.min.js"></script>
 <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 
@@ -61,7 +62,7 @@
                     xhr.onload = function () {
                         document.location = 'signin/logout';
                     }
-                    xhr.open('GET', '<?php echo base_url();?>signin/logout', true);
+                    xhr.open('GET', '<?php echo base_url(); ?>signin/logout', true);
                     xhr.send();
 
                     idleState = true;
@@ -128,8 +129,9 @@
         // Todays Purchase data
         var todaysPurchaseCount = document.getElementById('todaysPurchaseCount').value;
         var todaysOrderstatusCount = document.getElementById('todaysOrderstatusCount').value;
+        var todaysOtherPayCount = document.getElementById('todaysOtherPayCount').value;
         var todaysHistoryCount = document.getElementById('todaysHistoryCount').value;
-        if (todaysPurchaseCount > 0 || todaysOrderstatusCount > 0 || todaysHistoryCount > 0) {
+        if (todaysPurchaseCount > 0 || todaysOrderstatusCount > 0 || todaysHistoryCount > 0 || todaysOtherPayCount > 0) {
             document.getElementById('nodaydata').style.display = 'none';
         } else {
             document.getElementById('nodaydata').style.display = 'block';
@@ -145,13 +147,19 @@
                 value: parseInt(todaysOrderstatusCount),
                 color: "#DB3739",
                 highlight: "#DB3739",
-                label: "Order Status"
+                label: "Mobile Pay"
             },
             {
                 value: parseInt(todaysHistoryCount),
                 color: "#A9282A",
                 highlight: "#A9282A",
                 label: "History"
+            },
+            {
+                value: parseInt(todaysOtherPayCount),
+                color: "#E35151",
+                highlight: "#E35151",
+                label: "Other Pay"
             }
 
         ];
@@ -164,25 +172,25 @@
                 showTooltips: true
             });
 
-       };
+        };
     })(jQuery);
 
 </script>
 
 <script type="text/javascript">
-                                            $(function () {
-                                                $('#datetimepicker6').datetimepicker();
-                                                $('#datetimepicker7').datetimepicker({
-                                                    useCurrent: false
-                                                });
-                                                $("#datetimepicker6").on("dp.change", function (e) {
-                                                    $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-                                                });
-                                                $("#datetimepicker7").on("dp.change", function (e) {
-                                                    $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-                                                });
-                                            });
-        </script>
+    $(function () {
+        $('#datetimepicker6').datetimepicker();
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: false
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>
 
 <!-- end: Javascript -->
 </body>

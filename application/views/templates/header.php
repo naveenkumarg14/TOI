@@ -34,11 +34,11 @@
         <link href="<?php echo base_url(); ?>/css/style.css" rel="stylesheet">
 
         <!-- datetime picker -->
-        <link href="<?php echo base_url(); ?>css/bootstrap-datetimepicker.css" rel="stylesheet">
+<!--        <link href="<?php //echo base_url(); ?>css/bootstrap-datetimepicker.css" rel="stylesheet">
         <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-        <script src="<?php echo base_url(); ?>js/bootstrap-datetimepicker.js"></script>
+        <script src="<?php //echo base_url(); ?>js/bootstrap-datetimepicker.js"></script>-->
 
     </head>
 
@@ -85,7 +85,7 @@
                         <li><a href="<?php echo base_url(); ?>purchase"><span class="fa-area-chart fa"></span>Active Orders</a></li>
                         <li><a href="<?php echo base_url(); ?>orderstatus"><span class="fa-mobile fa"></span> Mobile Pay</a></li>
                         <li><a href="<?php echo base_url(); ?>otherpay"><span class="fa-money fa"></span> Other Pay</a></li>
-                        <li><a href="<?php echo base_url(); ?>history"><span class="fa-history fa"></span> History</a></li>
+                       <li><a href="<?php echo base_url(); ?>history"><span class="fa-history fa"></span> History</a></li>
                         <li><a href="<?php echo base_url(); ?>products"><span class="fa-list fa"></span> Products</a></li>
                     </ul>   
                 </div>

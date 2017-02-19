@@ -24,10 +24,12 @@ class Pages extends CI_Controller {
             date_default_timezone_set('UTC');
 
             $data['purchaseCount'] = $this->Dashboard_model->get_purchase_count();
-            $data['orderstatusCount'] = $this->Dashboard_model->get_orderstatus_count();
+            $data['mobilepayCount'] = $this->Dashboard_model->get_mobilepay_count();
+            $data['otherpayCount'] = $this->Dashboard_model->get_otherpay_count();
             $data['get_history_count'] = $this->Dashboard_model->get_history_count();
             $data['todaysPurchaseCount'] = $this->Dashboard_model->get_purchase_count();
-            $data['todaysOrderstatusCount'] = $this->Dashboard_model->get_orderstatus_count();
+            $data['todaysOrderstatusCount'] = $this->Dashboard_model->get_mobilepay_count();
+            $data['todaysOtherpayCount'] = $this->Dashboard_model->get_otherpay_count();
             $data['todaysHistoryCount'] = $this->Dashboard_model->get_history_count();
 
             $this->load->view('templates/header', $data);
