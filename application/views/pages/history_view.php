@@ -38,6 +38,10 @@
                             <th><?php echo PRICE . $get_history_details->TotalPrice; ?></th>
                         </tr>
                         <tr>
+                            <th>Total Amount Paid</th>
+                            <th><?php echo PRICE . $get_history_details->AmountPaid; ?></th>
+                        </tr>
+                        <tr>
                             <th>Payment Status</th>
                             <th><?php
                                 $PaymentStatus = $get_history_details->PaymentStatus;

@@ -24,6 +24,7 @@
                                     <th>Order Id</th>
                                     <th>Mobile</th>
                                     <th>Amount</th>
+                                    <th>Amount Paid</th>
                                     <th>Order Date</th>
                                     <th>Payment Status</th>
                                     <th>Action</th>
@@ -42,6 +43,7 @@
                                         <td><?php echo $item['OrderId']; ?> </td>
                                         <td><?php echo $item['UserMobileNumber']; ?></td>
                                         <td><?php echo PRICE . $item['TotalPrice']; ?></td>
+                                        <td><?php echo PRICE . $item['AmountPaid']; ?></td>
                                         <td><?php echo $item['OrderDateTime']; ?></td>
                                         <td><?php 
                                         $PaymentStatus = $item['PaymentStatus'];

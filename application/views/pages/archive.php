@@ -40,7 +40,7 @@
                     <br><br>
 
                     <div id="archivetableresult">
-                                              
+
                     </div>
 
                 </div>

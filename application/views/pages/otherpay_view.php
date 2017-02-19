@@ -15,7 +15,7 @@
             <div class="panel">
                 <div class="panel-body">
 
-                   <form action="" method="POST" name="otherpayform">
+                    <form action="" method="POST" name="otherpayform">
                         <div class="col-lg-8"></div>
                         <div class="col-lg-2">
                             <div class="form-group form-animate-text">
@@ -51,17 +51,6 @@
                         <tr>
                             <th>Total Price</th>
                             <th><?php echo PRICE . $get_otherpay_details->TotalPrice; ?></th>
-                        </tr>
-                        <tr>
-                            <th>Order Status</th>
-                            <th><?php
-                                $purchase_uuid = $get_otherpay_details->PurchaseUUID;
-                                if ($purchase_uuid != NULL) {
-                                    echo "Synced";
-                                } else {
-                                    echo "Not Synced";
-                                }
-                                ?></th>
                         </tr>
                     </table>
 

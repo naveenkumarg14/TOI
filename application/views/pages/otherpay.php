@@ -25,7 +25,6 @@
                                     <th>Mobile</th>
                                     <th>Amount</th>
                                     <th>Order Date</th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -35,12 +34,6 @@
                                 foreach ($get_otherpay as $item):
                                     $placed_orders_id = $item['PlacedOrdersId'];
                                     $view_url = site_url('otherpay/otherpay_view/' . $placed_orders_id);
-                                    $purchase_uuid = $item['PurchaseUUID'];
-                                    if ($purchase_uuid != "NULL") {
-                                        $status = "Synced";
-                                    } else {
-                                        $status = "Not Synced";
-                                    }
                                     ?>
                                     <tr> 
                                         <td><?php echo $totalrowcount; ?> </td>
@@ -49,10 +42,10 @@
                                         <td><?php echo $item['UserMobileNumber']; ?></td>
                                         <td><?php echo PRICE . $item['TotalPrice']; ?></td>
                                         <td><?php echo $item['OrderDateTime']; ?></td>
-                                        <td><?php echo $status; ?></td>
                                         <td><a href="<?php echo $view_url; ?>" class="btn btn-primary btn-sm" role="button">View</a></td>
                                     </tr>
-                                <?php $totalrowcount--; endforeach; ?>                             
+                                    <?php $totalrowcount--;
+                                endforeach; ?>                             
                             </tbody>
                         </table>
                     </div>
