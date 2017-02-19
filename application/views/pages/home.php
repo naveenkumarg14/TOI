@@ -1,3 +1,4 @@
+<meta http-equiv="refresh" content="30" />
 <!-- start: content -->
 <div id="content">
 

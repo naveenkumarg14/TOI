@@ -1,3 +1,4 @@
+<meta http-equiv="refresh" content="30" />
 <!-- start: Content -->
 <div id="content">
     <div class="panel box-shadow-none content-header">
