@@ -1,24 +1,24 @@
 <?php
 
-class Orderstatus_model extends CI_Model {
+class Otherpay_model extends CI_Model {
 
     public function __construct() {
         $this->load->database();
     }
 
-    public function get_orderstatus() {
+    public function get_otherpay() {
         $this->db->select('OrderId,PlacedOrdersId,TotalPrice,PurchaseUUID,TableNumber,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime');
         $this->db->from('placedorders');
         $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
         $this->db->where('IsClosed', 1);
         $this->db->where('PaymentStatus is NULL', NULL, FALSE);
-        $this->db->where('PurchaseUUID is NOT NULL', NULL, FALSE);
+        $this->db->where('PurchaseUUID is NULL', NULL, FALSE);
         $this->db->order_by('OrderDateTime', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function get_orderstatus_details($placed_orders_id) {
+    public function get_otherpay_details($placed_orders_id) {
         $this->db->select('OrderId,PlacedOrdersId,PlacedOrdersUuid,PurchaseUUID,TotalPrice,TableNumber,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime');
         $this->db->from('placedorders');
         $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
@@ -39,8 +39,8 @@ class Orderstatus_model extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-    
-     public function update_payment_details($placed_orders_id, $amountpaid) {
+
+    public function update_payment_details($placed_orders_id, $amountpaid) {
         $data = array('AmountPaid' => $amountpaid, 'PaymentStatus' => 'PAID');
         $this->db->where('PlacedOrdersId', $placed_orders_id);
         $this->db->update('placedorders', $data);

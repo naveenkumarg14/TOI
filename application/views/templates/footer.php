@@ -22,7 +22,6 @@
 <!-- end: Mobile -->
 
 <!-- start: Javascript -->
-<script src="<?php echo base_url(); ?>js/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>js/jquery.ui.min.js"></script>
 <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 
@@ -165,16 +164,25 @@
                 showTooltips: true
             });
 
-
-
-
-
-
-
-        };
+       };
     })(jQuery);
 
 </script>
+
+<script type="text/javascript">
+                                            $(function () {
+                                                $('#datetimepicker6').datetimepicker();
+                                                $('#datetimepicker7').datetimepicker({
+                                                    useCurrent: false
+                                                });
+                                                $("#datetimepicker6").on("dp.change", function (e) {
+                                                    $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+                                                });
+                                                $("#datetimepicker7").on("dp.change", function (e) {
+                                                    $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+                                                });
+                                            });
+        </script>
 
 <!-- end: Javascript -->
 </body>

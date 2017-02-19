@@ -3,9 +3,9 @@
     <div class="panel box-shadow-none content-header">
         <div class="panel-body">
             <div class="col-md-12">
-                <h3 class="animated fadeInLeft">Mobile Pay</h3>
+                <h3 class="animated fadeInLeft">Other Pay</h3>
                 <p class="animated fadeInDown">
-                    <a href="home">Home</a> <span class="fa-angle-right fa"></span> Mobile Pay
+                    <a href="home">Home</a> <span class="fa-angle-right fa"></span> Other Pay
                 </p>
             </div>
         </div>
@@ -30,10 +30,10 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $totalrowcount = count($get_orderstatus);
-                                foreach ($get_orderstatus as $item):
+                                $totalrowcount = count($get_otherpay);
+                                foreach ($get_otherpay as $item):
                                     $placed_orders_id = $item['PlacedOrdersId'];
-                                    $view_url = site_url('Orderstatus/orderstatus_view/' . $placed_orders_id);
+                                    $view_url = site_url('otherpay/otherpay_view/' . $placed_orders_id);
                                     $purchase_uuid = $item['PurchaseUUID'];
                                     if ($purchase_uuid != "NULL") {
                                         $status = "Synced";

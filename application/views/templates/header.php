@@ -26,20 +26,19 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-
-
         <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
 
         <!-- plugins -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/plugins/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/plugins/animate.min.css"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/plugins/nouislider.min.css"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/plugins/select2.min.css"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/plugins/ionrangeslider/ion.rangeSlider.css"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/plugins/ionrangeslider/ion.rangeSlider.skinFlat.css"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/plugins/bootstrap-material-datetimepicker.css"/>
         <link href="<?php echo base_url(); ?>/css/style.css" rel="stylesheet">
 
+        <!-- datetime picker -->
+        <link href="<?php echo base_url(); ?>css/bootstrap-datetimepicker.css" rel="stylesheet">
+        <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+        <script src="<?php echo base_url(); ?>js/bootstrap-datetimepicker.js"></script>
 
     </head>
 
@@ -84,7 +83,8 @@
                         </li>
                         <li><a href="<?php echo base_url(); ?>home"><span class="fa-home fa"></span>Dashboard</a></li>
                         <li><a href="<?php echo base_url(); ?>purchase"><span class="fa-area-chart fa"></span>Active Orders</a></li>
-                        <li><a href="<?php echo base_url(); ?>orderstatus"><span class="fa-diamond fa"></span> Order Status</a></li>
+                        <li><a href="<?php echo base_url(); ?>orderstatus"><span class="fa-mobile fa"></span> Mobile Pay</a></li>
+                        <li><a href="<?php echo base_url(); ?>otherpay"><span class="fa-money fa"></span> Other Pay</a></li>
                         <li><a href="<?php echo base_url(); ?>history"><span class="fa-history fa"></span> History</a></li>
                         <li><a href="<?php echo base_url(); ?>products"><span class="fa-list fa"></span> Products</a></li>
                     </ul>   

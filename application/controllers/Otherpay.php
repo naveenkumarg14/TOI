@@ -1,10 +1,10 @@
 <?php
 
-Class Orderstatus extends CI_Controller {
+Class Otherpay extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('Orderstatus_model');
+        $this->load->model('Otherpay_model');
         $this->load->helper('url_helper');
         $this->load->library('session');
         $this->load->library('form_validation');
@@ -14,34 +14,34 @@ Class Orderstatus extends CI_Controller {
 
     public function index() {
         if (!empty($_SESSION['MerchantId'])) {
-            $data['title'] = "Mobile Pay";
-            $data['get_orderstatus'] = $this->Orderstatus_model->get_orderstatus();
+            $data['title'] = "Other Pay";
+            $data['get_otherpay'] = $this->Otherpay_model->get_otherpay();
             $this->load->view('templates/header', $data);
-            $this->load->view('pages/orderstatus', $data);
+            $this->load->view('pages/otherpay', $data);
             $this->load->view('templates/footer', $data);
         } else {
             redirect('signin');
         }
     }
-    
-    public function orderstatus_view($placed_orders_id) {
+
+    public function otherpay_view($placed_orders_id) {
         if (!empty($_SESSION['MerchantId'])) {
-            $data['title'] = "View Mobile Pay";
-            $data['get_orderstatus_details'] = $this->Orderstatus_model->get_orderstatus_details($placed_orders_id);
-            $data['get_item_details'] = $this->Orderstatus_model->get_item_details($placed_orders_id);
-            
+            $data['title'] = "View Other Pay";
+            $data['get_otherpay_details'] = $this->Otherpay_model->get_otherpay_details($placed_orders_id);
+            $data['get_item_details'] = $this->Otherpay_model->get_item_details($placed_orders_id);
+
             $this->form_validation->set_rules('amountpaid', 'Amount Paid', 'required');
             if ($this->form_validation->run() === FALSE) {
                 
             } else {
                 $amountpaid = $this->input->post('amountpaid');
-                $this->Orderstatus_model->update_payment_details($placed_orders_id, $amountpaid);
-                $url = base_url() . "orderstatus";
+                $this->Otherpay_model->update_payment_details($placed_orders_id, $amountpaid);
+                $url = base_url() . "otherpay";
                 header("location:" . $url);
             }
-            
+
             $this->load->view('templates/header', $data);
-            $this->load->view('pages/orderstatus_view', $data);
+            $this->load->view('pages/otherpay_view', $data);
             $this->load->view('templates/footer', $data);
         } else {
             redirect('signin');

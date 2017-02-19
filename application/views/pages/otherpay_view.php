@@ -3,9 +3,9 @@
     <div class="panel box-shadow-none content-header">
         <div class="panel-body">
             <div class="col-md-12">
-                <h3 class="animated fadeInLeft">View Mobile Pay - <?php echo $get_orderstatus_details->OrderId; ?> </h3>
+                <h3 class="animated fadeInLeft">View Other Pay - <?php echo $get_otherpay_details->OrderId; ?> </h3>
                 <p class="animated fadeInDown">
-                    <a href="<?php echo base_url(); ?>orderstatus">Mobile Pay</a> <span class="fa-angle-right fa"></span> <?php echo $get_orderstatus_details->OrderId; ?>
+                    <a href="<?php echo base_url(); ?>otherpay">Other Pay</a> <span class="fa-angle-right fa"></span> <?php echo $get_otherpay_details->OrderId; ?>
                 </p>
             </div>
         </div>
@@ -34,28 +34,28 @@
                     <table class="table table-striped table-bordered" width="100%" cellspacing="0">
                         <tr>
                             <th>Table No.</th>
-                            <th><?php echo $get_orderstatus_details->TableNumber; ?></th>
+                            <th><?php echo $get_otherpay_details->TableNumber; ?></th>
                         </tr>
                         <tr>
                             <th>Order DateTime</th>
-                            <th><?php echo $get_orderstatus_details->OrderDateTime; ?></th>
+                            <th><?php echo $get_otherpay_details->OrderDateTime; ?></th>
                         </tr>
                         <tr>
                             <th>Last Updated DateTime</th>
-                            <th><?php echo $get_orderstatus_details->LastUpdatedDateTime; ?></th>
+                            <th><?php echo $get_otherpay_details->LastUpdatedDateTime; ?></th>
                         </tr>
                         <tr>
                             <th>User Mobile Number</th>
-                            <th><?php echo $get_orderstatus_details->UserMobileNumber; ?></th>
+                            <th><?php echo $get_otherpay_details->UserMobileNumber; ?></th>
                         </tr>
                         <tr>
                             <th>Total Price</th>
-                            <th><?php echo PRICE . $get_orderstatus_details->TotalPrice; ?></th>
+                            <th><?php echo PRICE . $get_otherpay_details->TotalPrice; ?></th>
                         </tr>
                         <tr>
                             <th>Order Status</th>
                             <th><?php
-                                $purchase_uuid = $get_orderstatus_details->PurchaseUUID;
+                                $purchase_uuid = $get_otherpay_details->PurchaseUUID;
                                 if ($purchase_uuid != NULL) {
                                     echo "Synced";
                                 } else {
