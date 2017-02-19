@@ -56,6 +56,7 @@ $route['products'] = 'products';
 $route['profile'] = 'profile';
 $route['apikey'] = 'apikey';
 $route['configuration'] = 'configuration';
+$route['archive'] = 'archive';
 $route['otherpay'] = 'otherpay';
 $route['history'] = 'history';
 $route['cancelled'] = 'cancelled';

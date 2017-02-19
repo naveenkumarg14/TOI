@@ -16,31 +16,68 @@
             <div class="panel">
                 <div class="panel-body">
 
-                    <div class='col-md-6'>
-                        <div class="form-group">
-                            <div class='input-group date' id='datetimepicker6'>
-                                <input type='text' class="form-control" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='col-md-6'>
-                        <div class="form-group">
-                            <div class='input-group date' id='datetimepicker7'>
-                                <input type='text' class="form-control" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                    <!--                    <div class='col-md-6'>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker6'>
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-md-6'>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker7'>
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>-->
 
                     <br><br>
 
-                    <div id="archivetableresult">
-
+                    <div class="responsive-table">
+                        <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Table No.</th>
+                                    <th>Order Id</th>
+                                    <th>Mobile</th>
+                                    <th>Amount</th>
+                                    <th>Amount Paid</th>
+                                    <th>Order Date</th>
+                                    <th>Payment Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $totalrowcount = count($get_archive);
+                                foreach ($get_archive as $item):
+                                    $HistoryId = $item['HistoryId'];
+                                    $view_url = site_url('Archive/archive_view/' . $HistoryId);
+                                    ?>
+                                    <tr> 
+                                        <td><?php echo $totalrowcount; ?> </td>
+                                        <td><?php echo $item['TableNumber']; ?> </td>
+                                        <td><?php echo $item['OrderId']; ?> </td>
+                                        <td><?php echo $item['UserMobileNumber']; ?></td>
+                                        <td><?php echo PRICE . $item['TotalPrice']; ?></td>
+                                        <td><?php echo PRICE . $item['AmountPaid']; ?></td>
+                                        <td><?php echo $item['OrderDateTime']; ?></td>
+                                        <td><?php echo $item['PaymentStatus']; ?></td>
+                                        <td><a href="<?php echo $view_url; ?>" class="btn btn-primary btn-sm" role="button">View</a></td>
+                                    </tr>
+                                    <?php
+                                    $totalrowcount--;
+                                endforeach;
+                                ?>                             
+                            </tbody>                         
+                        </table>
                     </div>
 
                 </div>
