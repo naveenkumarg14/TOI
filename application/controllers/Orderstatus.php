@@ -23,23 +23,24 @@ Class Orderstatus extends CI_Controller {
             redirect('signin');
         }
     }
-    
+
     public function orderstatus_view($placed_orders_id) {
         if (!empty($_SESSION['MerchantId'])) {
             $data['title'] = "View Mobile Pay";
             $data['get_orderstatus_details'] = $this->Orderstatus_model->get_orderstatus_details($placed_orders_id);
             $data['get_item_details'] = $this->Orderstatus_model->get_item_details($placed_orders_id);
-            
+
             $this->form_validation->set_rules('amountpaid', 'Amount Paid', 'required');
             if ($this->form_validation->run() === FALSE) {
                 
             } else {
                 $amountpaid = $this->input->post('amountpaid');
                 $this->Orderstatus_model->update_payment_details($placed_orders_id, $amountpaid);
+                $this->Orderstatus_model->send_mobilepay_details($placed_orders_id, $amountpaid);
                 $url = base_url() . "orderstatus";
                 header("location:" . $url);
             }
-            
+
             $this->load->view('templates/header', $data);
             $this->load->view('pages/orderstatus_view', $data);
             $this->load->view('templates/footer', $data);
