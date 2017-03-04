@@ -10,7 +10,7 @@ class Archive_model extends CI_Model {
         $this->db->select('HistoryId,OrderId, DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime,TotalPrice,UserMobileNumber,PaymentStatus,TableNumber,AmountPaid');
         $this->db->from('history');
         $this->db->join('tablelist', 'tablelist.TableListId = history.TableListId');
-        $this->db->order_by('OrderDateTime', 'DESC');
+        $this->db->order_by('ServerDateTime', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -20,6 +20,7 @@ class Archive_model extends CI_Model {
         $this->db->from('history a');
         $this->db->join('tablelist b', 'b.TableListId = a.TableListId');
         $this->db->where('HistoryId', $history_id);
+		$this->db->where('IsDeleted', 0);
         $query = $this->db->get();
         return $query->row();
     }

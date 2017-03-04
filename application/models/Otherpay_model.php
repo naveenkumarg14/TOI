@@ -11,9 +11,10 @@ class Otherpay_model extends CI_Model {
         $this->db->from('placedorders');
         $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
         $this->db->where('IsClosed', 1);
+		$this->db->where('IsMerged', 0);
         $this->db->where('PaymentStatus is NULL', NULL, FALSE);
         $this->db->where('PurchaseUUID is NULL', NULL, FALSE);
-        $this->db->order_by('OrderDateTime', 'DESC');
+        $this->db->order_by('LastUpdatedDateTime', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }

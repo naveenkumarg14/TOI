@@ -10,10 +10,11 @@ class History_model extends CI_Model {
         $this->db->select('OrderId,PlacedOrdersId,AmountPaid,TotalPrice,PaymentStatus,TableNumber,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime');
         $this->db->from('placedorders');
         $this->db->where('IsClosed', 1);
+		$this->db->where('IsMerged', 0);
         $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
         $this->db->where('PaymentStatus is NOT NULL', NULL, FALSE);
         //  $this->db->where('PurchaseUUID is NOT NULL', NULL, FALSE);
-        $this->db->order_by('OrderDateTime', 'DESC');
+        $this->db->order_by('LastUpdatedDateTime', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
