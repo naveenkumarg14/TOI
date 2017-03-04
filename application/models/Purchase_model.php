@@ -9,7 +9,7 @@ class Purchase_model extends CI_Model {
     public function get_purchase() {
         $result = array();
 
-        $this->db->select('OrderId,PlacedOrdersId,TotalPrice,TableNumber,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%h:%i %p") as OrderDateTime');
+        $this->db->select('OrderId,PlacedOrdersId,TotalPrice,TableNumber,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%h:%i %p") as OrderDateTime');
         $this->db->from('placedorders');
         $this->db->where('IsClosed', 0);
 		$this->db->where('IsMerged', 0);
@@ -32,32 +32,32 @@ class Purchase_model extends CI_Model {
     }
 
     public function get_total_orders($placeodrderid) {
-        $this->db->select('PlacedOrdersId,OrderStatus,PlacedOrdersId');
+        $this->db->select('SUM(Quantity) as totalquantity');
         $this->db->from('placedorderitems');
         $this->db->where('PlacedOrdersId', $placeodrderid);
         $this->db->where('IsDeleted', false);
         $query = $this->db->get();
-        return $query->num_rows();
+        return $query->row()->totalquantity;
     }
 
     public function get_total_delivered($placeodrderid) {
-        $this->db->select('PlacedOrdersId,OrderStatus,PlacedOrdersId');
+        $this->db->select('SUM(Quantity) as totalquantity');
         $this->db->from('placedorderitems');
         $this->db->where('PlacedOrdersId', $placeodrderid);
         $this->db->where('OrderStatus', 'DELIVERED');
         $this->db->where('IsDeleted', false);
         $query = $this->db->get();
-        return $query->num_rows();
+        return $query->row()->totalquantity;
     }
 
     public function get_total_activeorders($placeodrderid) {
-        $this->db->select('PlacedOrdersId,OrderStatus,PlacedOrdersId');
+        $this->db->select('SUM(Quantity) as totalquantity');
         $this->db->from('placedorderitems');
         $this->db->where('PlacedOrdersId', $placeodrderid);
         $this->db->where('OrderStatus', 'ORDERED');
         $this->db->where('IsDeleted', false);
         $query = $this->db->get();
-        return $query->num_rows();
+         return $query->row()->totalquantity;
     }
 
     public function get_purchase_details($placed_orders_id) {

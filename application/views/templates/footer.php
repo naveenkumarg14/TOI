@@ -20,11 +20,18 @@
     <span class="fa fa-bars"></span>
 </button>
 <!-- end: Mobile -->
+<script>
+    function printReceipt() {
+        document.getElementById('hidden_div').style.display = 'block';
+        window.print();
+        document.getElementById('hidden_div').style.display = 'none'
+    }
+</script>
 
 <!-- start: Javascript -->
-<!--<script src="<?php //echo base_url(); ?>js/jquery.min.js"></script>
-<script src="<?php //echo base_url(); ?>js/jquery.ui.min.js"></script>
-<script src="<?php //echo base_url(); ?>js/bootstrap.min.js"></script>-->
+<!--<script src="<?php //echo base_url();     ?>js/jquery.min.js"></script>
+<script src="<?php //echo base_url();     ?>js/jquery.ui.min.js"></script>
+<script src="<?php //echo base_url();     ?>js/bootstrap.min.js"></script>-->
 
 <!-- plugins -->
 <script src="<?php echo base_url(); ?>js/plugins/moment.min.js"></script>

@@ -3,10 +3,11 @@
     <div class="panel box-shadow-none content-header">
         <div class="panel-body">
             <div class="col-md-12">
+                <button onclick="printReceipt();" class="btn pull-right">Print Receipt</button>
                 <h3 class="animated fadeInLeft">View Mobile Pay - <?php echo $get_orderstatus_details->OrderId; ?> </h3>
                 <p class="animated fadeInDown">
                     <a href="<?php echo base_url(); ?>orderstatus">Mobile Pay</a> <span class="fa-angle-right fa"></span> <?php echo $get_orderstatus_details->OrderId; ?>
-                </p>
+                </p>                  
             </div>
         </div>
     </div>
@@ -14,9 +15,9 @@
         <div class="col-md-12">
             <div class="panel">
                 <div class="panel-body">
-
                     <form action="" method="POST" name="otherpayform">
-                        <div class="col-lg-8"></div>
+                        <div class="col-lg-8">
+                        </div>
                         <div class="col-lg-2">
                             <div class="form-group form-animate-text">
                                 <input type="number" class="form-text" name="amountpaid" required>
@@ -96,12 +97,60 @@
                             <?php endforeach; ?> 
                         </tbody>
                     </table>
-
-
-
                 </div>
             </div>
         </div>  
+
     </div>
 </div>
 <!-- end: content -->
+
+<div id="hidden_div" style="display: none;">
+    <div class="inner-heading">
+        <img src="<?php echo base_url(); ?>img/toi_logo.png"/> 
+        <h4> Taste of India</h4>
+        <p>293-295 High St N, <br>East Ham, <br>London E12 6SL</p>
+    </div>
+    <div class="inner-body">
+
+        <div style="width:50%;float:left;">
+            <p>Date : <?php echo date("d-M-Y", strtotime($get_orderstatus_details->LastUpdatedDateTime)); ?><br>
+                Time : <?php echo date("H:i:s", strtotime($get_orderstatus_details->LastUpdatedDateTime)); ?></p>
+        </div>
+
+        <div  style="width:50%;float:left;">
+            <p>Table No. <?php echo $get_orderstatus_details->TableNumber; ?><br>
+                Bill No. <?php echo $get_orderstatus_details->OrderId; ?></p>
+        </div>
+
+
+        <table class="table table-bordered" width="100%" cellspacing="0" style="border: none;">
+            <?php
+            foreach ($get_item_details as $item):
+                $quantity = $item['Quantity'];
+                $price = $item['Price'];
+                $cal_price = $price * $quantity;
+                ?>
+                <tr> 
+                    <th><?php echo $quantity . " x " . $item['Name']; ?></th>
+                    <td><?php echo PRICE . $cal_price; ?></td> 
+                </tr>
+            <?php endforeach; ?> 
+            <tr>
+                <th style="text-align: right;">SUBTOTAL</th>
+                <td><?php echo PRICE . $get_orderstatus_details->TotalPrice; ?></td>
+            </tr>
+            <tr>
+                <th style="text-align: right;">TAX</th>
+                <td><?php echo PRICE . $get_orderstatus_details->TotalPrice; ?></td>
+            </tr>
+            <tr>
+                <th style="text-align: right;">TOTAL</th>
+                <td><?php echo PRICE . $get_orderstatus_details->TotalPrice; ?></td>
+            </tr>
+        </table>
+    </div>
+    <div class="inner-footer">
+        <p>THANK YOU FOR DINING WITH US!<br>PLEASE COME AGAIN</p>
+    </div>
+</div>
