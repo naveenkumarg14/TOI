@@ -142,7 +142,7 @@
             </tr>
             <tr>
                 <th style="text-align: right;">TAX</th>
-                <td><?php echo PRICE . $get_orderstatus_details->TotalPrice; ?></td>
+                <td><?php echo PRICE . $get_orderstatus_details->TaxAmount; ?></td>
             </tr>
             <tr>
                 <th style="text-align: right;">TOTAL</th>
@@ -151,6 +151,6 @@
         </table>
     </div>
     <div class="inner-footer">
-        <p>THANK YOU FOR DINING WITH US!<br>PLEASE COME AGAIN</p>
+          <p style="font-size: 10px;">THANK YOU FOR DINING WITH US!<br>PLEASE COME AGAIN</p>
     </div>
 </div>

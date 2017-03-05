@@ -20,7 +20,7 @@ class Orderstatus_model extends CI_Model {
     }
 
     public function get_orderstatus_details($placed_orders_id) {
-        $this->db->select('OrderId,PlacedOrdersId,PlacedOrdersUuid,PurchaseUUID,TotalPrice,TableNumber,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime');
+        $this->db->select('OrderId,TaxAmount,Discount,PlacedOrdersId,PlacedOrdersUuid,PurchaseUUID,TotalPrice,TableNumber,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime');
         $this->db->from('placedorders');
         $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
         $this->db->where('PlacedOrdersId', $placed_orders_id);
