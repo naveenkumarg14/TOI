@@ -16,7 +16,6 @@
             <div class="panel">
                 <div class="panel-body">
 
-
                     <table class="table table-striped table-bordered" width="100%" cellspacing="0">
                         <tr>
                             <th>Table No.</th>

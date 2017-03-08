@@ -49,6 +49,11 @@
         </div>
 
         <div class="col-md-4"></div>
+        
+      <?php
+      
+                      print_r($values);
+      ?>
 
     </div>
 </div>

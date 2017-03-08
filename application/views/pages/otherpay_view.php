@@ -20,7 +20,7 @@
                         <div class="col-lg-8"></div>
                         <div class="col-lg-2">
                             <div class="form-group form-animate-text">
-                                <input type="number" class="form-text" name="amountpaid" required>
+                                <input type="number" class="form-text" step="any" name="amountpaid" required>
                                 <span class="bar"></span>
                                 <label>Amount</label>
                             </div>
