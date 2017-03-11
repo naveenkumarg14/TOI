@@ -20,7 +20,7 @@ class Archive_model extends CI_Model {
         $this->db->from('history a');
         $this->db->join('tablelist b', 'b.TableListId = a.TableListId');
         $this->db->where('HistoryId', $history_id);
-		$this->db->where('IsDeleted', 0);
+		$this->db->where('IsMerged', 0);
         $query = $this->db->get();
         return $query->row();
     }

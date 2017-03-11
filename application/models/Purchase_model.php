@@ -37,7 +37,11 @@ class Purchase_model extends CI_Model {
         $this->db->where('PlacedOrdersId', $placeodrderid);
         $this->db->where('IsDeleted', false);
         $query = $this->db->get();
-        return $query->row()->totalquantity;
+        $result = $query->row()->totalquantity;
+		if($result == null){
+			$result = 0;
+		}
+		return $result;
     }
 
     public function get_total_delivered($placeodrderid) {
@@ -47,7 +51,11 @@ class Purchase_model extends CI_Model {
         $this->db->where('OrderStatus', 'DELIVERED');
         $this->db->where('IsDeleted', false);
         $query = $this->db->get();
-        return $query->row()->totalquantity;
+        $result = $query->row()->totalquantity;
+		if($result == null){
+			$result = 0;
+		}
+		return $result;
     }
 
     public function get_total_activeorders($placeodrderid) {
@@ -57,7 +65,11 @@ class Purchase_model extends CI_Model {
         $this->db->where('OrderStatus', 'ORDERED');
         $this->db->where('IsDeleted', false);
         $query = $this->db->get();
-         return $query->row()->totalquantity;
+         $result = $query->row()->totalquantity;
+		if($result == null){
+			$result = 0;
+		}
+		return $result;
     }
 
     public function get_purchase_details($placed_orders_id) {
