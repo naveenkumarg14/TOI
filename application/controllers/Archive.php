@@ -15,7 +15,19 @@ Class Archive extends CI_Controller {
     public function index() {
         if (!empty($_SESSION['MerchantId'])) {
             $data['title'] = "Archive";
-            $data['get_archive'] = $this->Archive_model->get_archive();
+            $data['get_archive'] = "";
+
+            $this->form_validation->set_rules('startdatetime', 'Start Date', 'required');
+            $this->form_validation->set_rules('enddatetime', 'End Date', 'required');
+
+            if ($this->form_validation->run() === FALSE) {
+                
+            } else {
+                $startdatetime = $this->input->post('startdatetime');
+                $enddatetime = $this->input->post('enddatetime');
+                $data['get_archive'] = $this->Archive_model->get_archive($startdatetime, $enddatetime);
+            }
+
             $this->load->view('templates/header', $data);
             $this->load->view('pages/archive', $data);
             $this->load->view('templates/footer', $data);

@@ -106,9 +106,9 @@ Class Products extends CI_Controller {
                             $data_value = $objPHPExcel->getActiveSheet()->getCell($cell)->getValue();
                             //header will/should be in row 1 only. of course this can be modified to suit your need.
                             if ($row == 1) {
-                                $header[$row][$column] = $data_value;
+                                $header[$row][$column] = stripslashes($data_value);
                             } else {
-                                $arr_data[$row][$column] = $data_value;
+                                $arr_data[$row][$column] = stripslashes($data_value);
                             }
                         }
                         //send the data in an array format

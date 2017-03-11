@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group form-animate-text">
-                                <input type="number" class="form-text" name="amountpaid" required>
+                                <input type="number" class="form-text" step="any" name="amountpaid" required>
                                 <span class="bar"></span>
                                 <label>Amount</label>
                             </div>
@@ -142,7 +142,7 @@
             </tr>
             <tr>
                 <th style="text-align: right;">TAX</th>
-                <td><?php echo PRICE . $get_orderstatus_details->TotalPrice; ?></td>
+                <td><?php echo PRICE . $get_orderstatus_details->TaxAmount; ?></td>
             </tr>
             <tr>
                 <th style="text-align: right;">TOTAL</th>
@@ -151,6 +151,6 @@
         </table>
     </div>
     <div class="inner-footer">
-        <p>THANK YOU FOR DINING WITH US!<br>PLEASE COME AGAIN</p>
+          <p style="font-size: 10px;">THANK YOU FOR DINING WITH US!<br>PLEASE COME AGAIN</p>
     </div>
 </div>
