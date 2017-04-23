@@ -64,6 +64,7 @@ $route['cancelled'] = 'cancelled';
 $route['delivered'] = 'delivered';
 $route['orderstatus'] = 'orderstatus';
 $route['purchase'] = 'purchase';
+$route['takeaway'] = 'takeaway';
 
 $route['forgotpass'] = 'forgotpass';
 $route['signup'] = 'signup';

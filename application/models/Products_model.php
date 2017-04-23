@@ -72,6 +72,10 @@ class Products_model extends CI_Model {
             $Status = $value['J'];
             $Spicy = $value['K'];
             $FoodType = $value['L'];
+			$CurrentCount = $value['M'];
+			$MaxCount = $value['N'];
+			$ShowingFrom = $value['O'];
+			$ShowingTo = $value['P'];
 
             $menucourseid = $this->menu_course($MenuCourse, $todaysdate, $MenuCourseDisplayOrder);
             $foodcategoryid = $this->food_category($FoodCategory, $menucourseid, $todaysdate, $FoodCategoryDisplayOrder);
@@ -81,12 +85,13 @@ class Products_model extends CI_Model {
                 $itemcode_data = array(
                     'DateTime' => $todaysdate, 'MenuItemCode' => $MenuItemCode, 'MenuUuid' => $this->generate_secure_token(),
                     'Name' => $Name, 'Price' => $Price, 'Status' => $Status, 'FoodCategoryId' => $foodcategoryid, 'MenuCourseId' => $menucourseid, 'ServerTime' => $todaysdate,
-                    'DisplayOrder' => $DisplayOrder, 'FoodType' => $FoodType, 'TasteType' => $Spicy, 'Description' => $Description);
+                    'DisplayOrder' => $DisplayOrder, 'FoodType' => $FoodType, 'TasteType' => $Spicy,
+					'Description' => $Description, 'CurrentCount' => $CurrentCount, 'MaxCount' => $MaxCount, 'ShowingFrom' => $ShowingFrom, 'ShowingTo' => $ShowingTo);
                 $this->db->insert('menuentity', $itemcode_data);
             } else {
                 $data = array(
                     'DateTime' => $todaysdate, 'Name' => $Name, 'Price' => $Price, 'Status' => $Status, 'FoodCategoryId' => $foodcategoryid, 'MenuCourseId' => $menucourseid,
-                    'ServerTime' => $todaysdate, 'DisplayOrder' => $DisplayOrder, 'FoodType' => $FoodType, 'TasteType' => $Spicy, 'Description' => $Description);
+                    'ServerTime' => $todaysdate, 'DisplayOrder' => $DisplayOrder, 'FoodType' => $FoodType, 'TasteType' => $Spicy, 'Description' => $Description, 'CurrentCount' => $CurrentCount, 'MaxCount' => $MaxCount, 'ShowingFrom' => $ShowingFrom, 'ShowingTo' => $ShowingTo);
                 $this->db->where('MenuId', $menuitemcode);
                 $this->db->update('menuentity', $data);
             }

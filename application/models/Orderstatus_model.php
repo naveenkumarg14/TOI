@@ -7,11 +7,12 @@ class Orderstatus_model extends CI_Model {
     }
 
     public function get_orderstatus() {
-        $this->db->select('OrderId,PlacedOrdersId,TotalPrice,PurchaseUUID,TableNumber,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime');
+        $this->db->select('OrderId,PlacedOrdersId,TotalPrice,PurchaseUUID,TableNumber,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime');
         $this->db->from('placedorders');
         $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
         $this->db->where('IsClosed', 1);
 		$this->db->where('IsMerged', 0);
+		$this->db->where('OrderType', 0);
         $this->db->where('PaymentStatus is NULL', NULL, FALSE);
         $this->db->where('PurchaseUUID is NOT NULL', NULL, FALSE);
         $this->db->order_by('LastUpdatedDateTime', 'DESC');

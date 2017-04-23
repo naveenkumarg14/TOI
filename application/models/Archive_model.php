@@ -7,13 +7,14 @@ class Archive_model extends CI_Model {
     }
 
     public function get_archive($startdatetime, $enddatetime) {
-        $startdatetime = strtotime($startdatetime) * 1000;
-        $enddatetime = strtotime($enddatetime) * 1000;
+       // $startdatetime = strtotime($startdatetime) * 1000;
+       // $enddatetime = strtotime($enddatetime) * 1000;
         $this->db->select('HistoryId,OrderId, DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime,TotalPrice,UserMobileNumber,PaymentStatus,TableNumber,AmountPaid');
         $this->db->from('history');
         $this->db->join('tablelist', 'tablelist.TableListId = history.TableListId');
-        $this->db->where('OrderDateTime >= ', $startdatetime);
-        $this->db->where('OrderDateTime <= ', $enddatetime);
+		$this->db->where('IsMerged', 0);
+       // $this->db->where('OrderDateTime >= ', $startdatetime);
+      //  $this->db->where('OrderDateTime <= ', $enddatetime);
         $this->db->order_by('ServerDateTime', 'DESC');
         $query = $this->db->get();
         return $query->result_array();

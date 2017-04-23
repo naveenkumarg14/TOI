@@ -83,6 +83,7 @@
                         </li>
                         <li><a href="<?php echo base_url(); ?>home"><span class="fa-home fa"></span>Dashboard</a></li>
                         <li><a href="<?php echo base_url(); ?>purchase"><span class="fa-area-chart fa"></span>Active Orders</a></li>
+						<li><a href="<?php echo base_url(); ?>takeaway"><span class="fa-area-chart fa"></span>Take Away</a></li>
                         <li><a href="<?php echo base_url(); ?>orderstatus"><span class="fa-mobile fa"></span> Mobile Pay</a></li>
                         <li><a href="<?php echo base_url(); ?>otherpay"><span class="fa-money fa"></span> Other Pay</a></li>
                         <li><a href="<?php echo base_url(); ?>history"><span class="fa-history fa"></span> History</a></li>
