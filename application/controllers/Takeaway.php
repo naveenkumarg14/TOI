@@ -29,13 +29,25 @@ Class Takeaway extends CI_Controller {
         }
     }
 
-    
-
     public function takeaway_view($placed_orders_id) {
         if (!empty($_SESSION['MerchantId'])) {
             $data['title'] = "View TakeAway Details";
             $data['get_take_away_order_details'] = $this->Takeaway_model->get_take_away_order_details($placed_orders_id);
             $data['get_item_details'] = $this->Takeaway_model->get_item_details($placed_orders_id);
+
+            if ($this->input->post('synchedvalue') == 1) {
+                $this->form_validation->set_rules('synchedstatus', 'Status', 'required');
+                $synchedstatus = $this->input->post('synchedstatus');
+                $this->Takeaway_model->update_synched_details($placed_orders_id, $synchedstatus);
+                $url = base_url() . "takeaway";
+                header("location:" . $url);
+            } else if ($this->input->post('notsynchedvalue') == 2) {
+                $this->form_validation->set_rules('amountpaid', 'Amount Paid', 'required');
+                $amountpaid = $this->input->post('amountpaid');
+                $this->Takeaway_model->update_payment_details($placed_orders_id, $amountpaid);
+                $url = base_url() . "takeaway";
+                header("location:" . $url);
+            }
             $this->load->view('templates/header', $data);
             $this->load->view('pages/takeaway_view', $data);
             $this->load->view('templates/footer', $data);

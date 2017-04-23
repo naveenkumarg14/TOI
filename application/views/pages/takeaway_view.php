@@ -14,22 +14,47 @@
         <div class="col-md-12">
             <div class="panel">
                 <div class="panel-body">
-				
-				<form action="" method="POST" name="otherpayform">
-                        <div class="col-lg-8"></div>
-                        <div class="col-lg-2">
-                            <div class="form-group form-animate-text">
-                                <input type="number" class="form-text" step="any" name="amountpaid" required>
-                                <span class="bar"></span>
-                                <label>Amount</label>
-                            </div>
-                        </div>
 
-                        <div class="col-lg-2">
-                            <br>
-                            <input type="submit" class="btn" value="Delivered"/>
-                        </div>
-                    </form>
+                    <?php
+                    $purchase_uuid = $get_take_away_order_details->PurchaseUUID;
+                    if ($purchase_uuid != NULL) {
+                        ?>
+                        <form action="" method="POST" name="synchedform">
+                            <div class="col-lg-7"></div>
+                            <div class="col-lg-3">
+                                <div class="form-group form-animate-text" style="margin-top:10px !important;">
+                                    <select class="form-text" name="synchedstatus" id="synchedstatus" required aria-required="true">
+                                        <option value="Ready to collect">Ready to collect</option>
+                                        <option value="Delivered (Not yet implemented)">Delivered (Not yet implemented)</option>
+                                    </select>
+                                    <span class="bar"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <br>
+                                <input type="hidden" name="synchedvalue" value="1"/>
+                                <input type="submit" class="btn" value="Delivered"/>
+                            </div>
+                        </form>
+                    <?php } else { ?>
+                        <form action="" method="POST" name="notsynchedform">
+                            <div class="col-lg-8"></div>
+                            <div class="col-lg-2">
+                                <div class="form-group form-animate-text">
+                                    <input type="number" class="form-text" step="any" name="amountpaid" id="amountpaid" required>
+                                    <span class="bar"></span>
+                                    <label>Amount</label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <br>
+                                <input type="hidden" name="notsynchedvalue" value="2"/>
+                                <input type="submit" class="btn" value="Delivered"/>
+                            </div>
+                        </form>
+                    <?php } ?>
 
                     <table class="table table-striped table-bordered" width="100%" cellspacing="0">
                         <tr>
@@ -52,21 +77,20 @@
                             <th>Total Price</th>
                             <th><?php echo PRICE . $get_take_away_order_details->TotalPrice; ?></th>
                         </tr>
-						 <tr>
+                        <tr>
                             <th>Sync Status</th>
-							<th><?php
-                                $purchase_uuid = $get_take_away_order_details->PurchaseUUID;
+                            <th><?php
                                 if ($purchase_uuid != NULL) {
                                     echo "Synced";
                                 } else {
                                     echo "Not Synced";
                                 }
                                 ?></th>
-                            
+
                         </tr>
-						 <tr>
+                        <tr>
                             <th>Payment Status</th>
-							<th><?php
+                            <th><?php
                                 $payment_status = $get_take_away_order_details->PaymentStatus;
                                 if ($payment_status != NULL) {
                                     echo $payment_status;
@@ -74,7 +98,7 @@
                                     echo "Not Paied";
                                 }
                                 ?></th>
-                            
+
                         </tr>
                     </table>
 
@@ -88,7 +112,7 @@
                                 <th>Name</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
@@ -105,7 +129,7 @@
                                     <td><?php echo $item['Name']; ?></td>
                                     <td><?php echo $quantity; ?></td>
                                     <td><?php echo PRICE . $cal_price; ?></td>
-                                                                     
+
                                 </tr>
                             <?php endforeach; ?> 
                         </tbody>

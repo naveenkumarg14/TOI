@@ -12,11 +12,11 @@ class Takeaway_model extends CI_Model {
         $this->db->select('OrderId,PlacedOrdersId,TotalPrice,PurchaseUUID,PaymentStatus,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%h:%i %p") as OrderDateTime');
         $this->db->from('placedorders');
         $this->db->where('IsClosed', 0);
-		$this->db->where('IsMerged', 0);
-		$this->db->where('OrderType', 1);
-       // $this->db->where('PaymentStatus is NULL', NULL, FALSE);
-       // $this->db->where('PurchaseUUID is NULL', NULL, FALSE);
-       // $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
+        $this->db->where('IsMerged', 0);
+        $this->db->where('OrderType', 1);
+        // $this->db->where('PaymentStatus is NULL', NULL, FALSE);
+        // $this->db->where('PurchaseUUID is NULL', NULL, FALSE);
+        // $this->db->join('tablelist', 'tablelist.TableListId = placedorders.TableListId');
         $this->db->order_by('OrderDateTime', 'DESC');
         $query = $this->db->get();
 
@@ -24,7 +24,7 @@ class Takeaway_model extends CI_Model {
 
         foreach ($var as $value) {
             $value['totalorders'] = $this->get_total_orders($value['PlacedOrdersId']);
-            
+
             array_push($result, $value);
         }
 
@@ -38,13 +38,11 @@ class Takeaway_model extends CI_Model {
         $this->db->where('IsDeleted', false);
         $query = $this->db->get();
         $result = $query->row()->totalquantity;
-		if($result == null){
-			$result = 0;
-		}
-		return $result;
+        if ($result == null) {
+            $result = 0;
+        }
+        return $result;
     }
-
-   
 
     public function get_take_away_order_details($placed_orders_id) {
         $this->db->select('OrderId,PlacedOrdersId,PlacedOrdersUuid,PurchaseUUID,TotalPrice,UserMobileNumber,DATE_FORMAT(FROM_UNIXTIME(LastUpdatedDateTime/1000),"%d-%m-%Y %h:%i %p") as LastUpdatedDateTime,PaymentStatus,DATE_FORMAT(FROM_UNIXTIME(OrderDateTime/1000),"%d-%m-%Y %h:%i %p") as OrderDateTime');
@@ -67,10 +65,17 @@ class Takeaway_model extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-	
-	
-	 public function update_payment_details($placed_orders_id, $amountpaid) {
-        $data = array('AmountPaid' => $amountpaid, 'PaymentStatus' => 'PAID');
+
+    public function update_payment_details($placed_orders_id, $amountpaid) {
+        $datetime = strtotime(date('Y-m-d H:i:s')) * 1000;
+        $data = array('AmountPaid' => $amountpaid, 'PaymentStatus' => 'PAID', 'ServerDateTime' => $datetime, 'LastUpdatedDateTime' => $datetime);
+        $this->db->where('PlacedOrdersId', $placed_orders_id);
+        $this->db->update('placedorders', $data);
+    }
+
+    public function update_synched_details($placed_orders_id, $status) {
+        $datetime = strtotime(date('Y-m-d H:i:s')) * 1000;
+        $data = array('DeliveryStatus' => $status, 'ServerDateTime' => $datetime, 'LastUpdatedDateTime' => $datetime);
         $this->db->where('PlacedOrdersId', $placed_orders_id);
         $this->db->update('placedorders', $data);
     }
